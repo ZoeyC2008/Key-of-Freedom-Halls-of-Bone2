@@ -118,6 +118,8 @@ label totum_menu:
             jump totum_buy
         "(Check money)":
             jump money
+        "(Check inventory)":
+            jump check_inventory
         "(Behold yourself.)":
             jump behold_self
 
@@ -129,21 +131,26 @@ label totum_buy:
     "Totum has many different products."
     menu:
         "A Silver Blade":
-            $ buying = "silver_blde"
+            $ buying = "silver blade"
         "A Agate Blade":
-            $ buying = "agate_blade"
+            $ buying = "agate blade"
         "A Bone Blade":
-            $ buying = "bone_blade"
+            $ buying = "bone blade"
         "A Paper Boat":
-            $ buying = "paper_boat"
+            $ buying = "paper boat"
         "A Feathered Boat":
-            $ buying = "feathered_boat"
+            $ buying = "feathered boat"
         "A Singular Nightmare Flower":
-            $ buying = "nightmare_flower"
+            $ buying = "nightmare flower"
     jump totum_buying
 
 label money:
     "You have [silver] silver, [agate] agate, and [bone] bone."
+    jump totum_menu
+
+label check_inventory:
+    "Your inventory is [', '.join(inventory)]."
+    jump totum_menu
 
 label behold_self:
     scene bg blue
@@ -272,27 +279,27 @@ label totum_selling:
 
 label totum_buying:
     
-    if buying == "silver_blade":
+    if buying == "silver blade":
         $ min_buy = 150
         $ max_buy = 300
         totum "Purified silver, more or less. Cuts through flesh perfectly and the wound won't even be infected, probably. Can be used for organs and sacrificial blood, so long as you don't min_buyd the somewhat imprecise wound."
-    elif buying == "agate_blade":
+    elif buying == "agate blade":
         $ min_buy = 300
         $ max_buy = 400
         totum "Freshly quartered agate, good at quartering flesh. Will be able to carefully cut at any organ, so long as you know where it is. You most certainly don't want to cut your aorta while trying to get a lung."
-    elif buying == "bone_blade":
+    elif buying == "bone blade":
         $ min_buy = 450
         $ max_buy = 600
         totum "Not as good as a blade from your own bone, but a stranger will have to do. You don't want to give up a limb just yet, do you? This blade shall find its way through your flesh, and it shall obtain exactly what is needed, no more, no less."
-    elif buying == "paper_boat":
+    elif buying == "paper boat":
         $ min_buy = 180
         $ max_buy = 350
         totum "Cheap, but reliable. This boat will get you between islands just fine, as long as you're light, that is."
-    elif buying == "feathered_boat":
+    elif buying == "feathered boat":
         $ min_buy = 600
         $ max_buy = 750
         totum "Made from the plucked feathers of a thousand swans, this boat will keep you afloat even through the worst of storms."
-    elif buying == "nightmare_flower":
+    elif buying == "nightmare flower":
         $ min_buy = 110
         $ max_buy = 150
         totum "Pretty, but cheap, and maybe just fine enough of a gift."
